@@ -17,4 +17,9 @@ class Shop extends Model
     {
         return $this->hasOne('App\ShopPayInformation');
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
 }

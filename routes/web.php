@@ -16,6 +16,11 @@ Route::group(['middleware' => 'wechat.oauth'], function () {
     Route::resource('user', 'UserController');
     Route::get('/', 'HomeController@index');
 });
+Route::group(['prefix' => 'shop'], function () {
+    Route::get('list', 'IndexController@shopList');
+    Route::get('details', 'IndexController@shopDetails');
+});
+
 
 Route::post('/tools/sendmsg', 'HomeController@sendMessage');
 

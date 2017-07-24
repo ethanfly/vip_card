@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = getUser();
+        $user = GetUser();
         if ($user->phone) {
             return view('index');
         } else {

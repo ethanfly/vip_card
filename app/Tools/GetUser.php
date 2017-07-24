@@ -6,7 +6,7 @@
  * Time: 1:00
  */
 
-function getUser()
+function GetUser()
 {
     $uesr = session('wechat.oauth_user');
     $openid = $uesr->id;

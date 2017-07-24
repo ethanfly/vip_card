@@ -10,7 +10,8 @@
                     <i class="glyphicon glyphicon-search"></i>
                 </div>
                 <div class="input">
-                    <input type="search" @change="change" v-model="search" placeholder="请输入你想要搜索的商家">
+                    <input type="search" @input="change" @propertychange="change" v-model="search"
+                           placeholder="请输入你想要搜索的商家">
                 </div>
             </div>
         </div>
