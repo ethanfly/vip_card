@@ -1,7 +1,7 @@
 <template>
     <div class="list">
         <div class="item" v-for="item in list">
-            <a class="media">
+            <a class="media" :href="shopUrl(item.id)">
                 <div class="media-left">
                     <img class="media-object" :src="item.img" alt="" width="112" height="70">
                 </div>
@@ -30,10 +30,13 @@
     export default {
         data(){
             return {
+                tag_id: '',
                 end: false,
                 pages: 1,
                 search: '',
-                list: []
+                list: [],
+                lng: '',
+                lat: ''
             };
         },
         created(){
@@ -41,45 +44,50 @@
         },
         mounted() {
             let self = this;
+            // 百度地图API功能
+            let geolocation = new BMap.Geolocation();
+            geolocation.getCurrentPosition(function (r) {
+                if (this.getStatus() === BMAP_STATUS_SUCCESS) {
+                    self.lng = r.point.lng;//经度
+                    self.lat = r.point.lat;//纬度
+                    self.getList();
+                }
+                else {
+                    alert('定位失败，请刷新页面重试！');
+                }
+            }, {enableHighAccuracy: true});
             bus.$on('search', msg => {
                 self.list = [];
-                self.search = msg;
+                self.search = msg.search ? msg.search : '';
+                self.tag_id = msg.tag_id ? msg.tag_id : '';
                 self.pages = 1;
                 self.end = false;
                 this.getList();
             });
-            this.getList();
         },
         computed: {},
         methods: {
+            shopUrl(id){
+                return 'shop/' + id + '?lng=' + this.lng + '&lat=' + this.lat;
+            },
             getList(){
                 let self = this;
-                // 百度地图API功能
-                let geolocation = new BMap.Geolocation();
-                geolocation.getCurrentPosition(function (r) {
-                    if (this.getStatus() === BMAP_STATUS_SUCCESS) {
-                        let lng = r.point.lng;//经度
-                        let lat = r.point.lat;//纬度
-                        axios.get(api.shop.list, {
-                            params: {
-                                search: self.search,
-                                page: self.pages,
-                                lng: lng,
-                                lat: lat
-                            }
-                        }).then(r => {
-                            if (self.pages === r.data.last_page + 1) {
-                                self.end = true;
-                            } else {
-                                self.pages = self.pages + 1;
-                                self.list.push.apply(self.list, r.data.data);
-                            }
-                        });
+                axios.get(api.shop.list, {
+                    params: {
+                        tag_id: self.tag_id,
+                        search: self.search,
+                        page: self.pages,
+                        lng: self.lng,
+                        lat: self.lat
                     }
-                    else {
-                        alert('定位失败，请刷新页面重试！');
+                }).then(r => {
+                    if (self.pages === r.data.last_page + 1) {
+                        self.end = true;
+                    } else {
+                        self.pages = self.pages + 1;
+                        self.list.push.apply(self.list, r.data.data);
                     }
-                }, {enableHighAccuracy: true})
+                });
             },
             onscroll(){
                 let self = this;

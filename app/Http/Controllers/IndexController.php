@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Shop;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -12,8 +13,16 @@ class IndexController extends Controller
         $search = $request->search;
         $lng = $request->lng;
         $lat = $request->lat;
-//        $shops=Shop::all();
-        $shops = Shop::where('name', 'like', "%$search%")->get();
+        if ($request->has('tag_id') && $request->tag_id) {
+            $shops = Shop::where('name', 'like', "%$search%")
+                ->whereHas('tags', function ($query) use ($request) {
+                    $query->where('tags.id', $request->tag_id);
+                })
+                ->get();
+        } else {
+            $shops = Shop::where('name', 'like', "%$search%")
+                ->get();
+        }
         foreach ($shops as $shop) {
             $shop->distance = GetDistance($lat, $lng, $shop->latitude, $shop->longitude);
         }
@@ -22,6 +31,7 @@ class IndexController extends Controller
             return [
                 'id' => $item->id,
                 'name' => $item->name,
+                'img' => $item->img,
                 'distance' => $item->distance,
                 'tags' => $item->tags->map->tag,
                 'cards_count' => '6',//会员卡数量
@@ -36,8 +46,18 @@ class IndexController extends Controller
         return response()->json($shops);
     }
 
-    public function shopDetails()
+    public function shopDetails($id, Request $request)
     {
+        $shop = Shop::find($id);
+        $shop->distance = GetDistance($request->lat, $request->lng, $shop->latitude, $shop->longitude);
+        return view('shop', [
+            'shop' => $shop
+        ]);
+    }
 
+    public function tagsList()
+    {
+        $tags = Tag::all();
+        return response()->json($tags);
     }
 }

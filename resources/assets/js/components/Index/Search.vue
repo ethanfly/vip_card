@@ -35,7 +35,7 @@
         computed: {},
         methods: {
             change(){
-                bus.$emit('search', this.search);
+                bus.$emit('search', {search: this.search});
             }
         }
     }

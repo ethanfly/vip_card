@@ -6740,3 +6740,154 @@ textarea {
   overflow: hidden;
   color: #000;
 }
+.white-box {
+  background-color: #fff;
+  margin: 10px 0;
+  padding: 10px;
+}
+.white-box p:last-child {
+  margin-bottom: 0;
+}
+.shop-top .title {
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+.shop-top .tag {
+  font-size: 13px;
+  color: #ff5400;
+  margin-bottom: 10px;
+}
+.shop-top .content {
+  font-size: 12px;
+}
+.shop-address .left {
+  max-width: calc(100% - 30px);
+  float: left;
+}
+.shop-address .left .icon {
+  color: #999999;
+}
+.shop-address .call {
+  float: right;
+  margin-top: 10px;
+}
+.shop-address .call a {
+  font-size: 24px;
+  color: #2ad0bf;
+}
+.shop-address::after {
+  content: " ";
+  display: table;
+  clear: both;
+}
+.shop-cards {
+  margin: 15px 0;
+  height: 110px;
+  background-color: #fff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.shop-cards .bg {
+  color: #fff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 80px;
+}
+.shop-cards .bg .icon {
+  float: left;
+  margin: 10px 0 0 10px;
+}
+.shop-cards .bg .content {
+  width: calc(100% - 80px);
+  float: left;
+  margin-left: 10px;
+}
+.shop-cards .bg .content h4 {
+  font-size: 14px;
+}
+.shop-cards .bg .content h3 {
+  margin: 0;
+}
+.shop-cards .bg .content .left {
+  float: left;
+}
+.shop-cards .bg .content .right {
+  padding-top: 10px;
+  text-align: right;
+  padding-right: 15px;
+  float: right;
+}
+.shop-cards .bg .content .right .money {
+  font-size: 19px;
+  font-weight: bold;
+}
+.shop-cards .bg .content .right .type {
+  font-size: 12px;
+}
+.shop-cards .bg .content .look {
+  float: left;
+}
+.shop-cards .bg .content .buy {
+  float: right;
+}
+.shop-cards .bg::after {
+  content: " ";
+  display: table;
+  clear: both;
+}
+.shop-cards .look {
+  color: #000;
+  padding-left: 10px;
+  float: left;
+}
+.shop-cards .buy {
+  color: red;
+  padding-right: 10px;
+  float: right;
+}
+.shop-cards::after {
+  content: " ";
+  display: table;
+  clear: both;
+}
+.shop-cards.type1 .bg {
+  /* Safari 5.1 - 6.0 */
+  /* Opera 11.1 - 12.0 */
+  /* Firefox 3.6 - 15 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#EC4D4D), to(#D90505));
+  background: linear-gradient(#EC4D4D, #D90505);
+  /* 标准的语法 */
+}
+.shop-cards.type2 .bg {
+  /* Safari 5.1 - 6.0 */
+  /* Opera 11.1 - 12.0 */
+  /* Firefox 3.6 - 15 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#BED905), to(#0FA870));
+  background: linear-gradient(#BED905, #0FA870);
+  /* 标准的语法 */
+}
+.shop-cards.type3 .bg {
+  /* Safari 5.1 - 6.0 */
+  /* Opera 11.1 - 12.0 */
+  /* Firefox 3.6 - 15 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#ED4E4D), to(#D9B806));
+  background: linear-gradient(#ED4E4D, #D9B806);
+  /* 标准的语法 */
+}
+.shop-cards.type4 .bg {
+  /* Safari 5.1 - 6.0 */
+  /* Opera 11.1 - 12.0 */
+  /* Firefox 3.6 - 15 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#696D6B), to(#aa05d9));
+  background: linear-gradient(#696D6B, #aa05d9);
+  /* 标准的语法 */
+}
+.shop-link {
+  margin-bottom: 1px;
+}
+.shop-link h4 {
+  font-size: 14px;
+}
+.shop-link h4 span {
+  font-size: 12px;
+}

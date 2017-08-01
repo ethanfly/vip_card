@@ -41724,7 +41724,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {},
     methods: {
         change: function change() {
-            __WEBPACK_IMPORTED_MODULE_0__eventBus__["a" /* default */].$emit('search', this.search);
+            __WEBPACK_IMPORTED_MODULE_0__eventBus__["a" /* default */].$emit('search', { search: this.search });
         }
     }
 });
@@ -42953,6 +42953,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__eventBus__ = __webpack_require__(10);
 //
 //
 //
@@ -42966,71 +42967,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {};
+        return {
+            tags: []
+        };
     },
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.get('tags').then(function (r) {
+            _this.tags = r.data;
+        });
+    },
 
     computed: {},
-    methods: {}
+    methods: {
+        change: function change(id) {
+            __WEBPACK_IMPORTED_MODULE_0__eventBus__["a" /* default */].$emit('search', { tag_id: id });
+        }
+    }
 });
 
 /***/ }),
@@ -43038,84 +42996,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "menu"
-  }, [_c('a', {
-    staticClass: "box"
-  }, [_c('dl', [_c('dd', [_c('img', {
-    attrs: {
-      "src": "/img/menu1.png",
-      "alt": "",
-      "width": "30",
-      "height": "28"
-    }
-  })]), _vm._v(" "), _c('dt', [_vm._v("美食")])])]), _vm._v(" "), _c('a', {
-    staticClass: "box"
-  }, [_c('dl', [_c('dd', [_c('img', {
-    attrs: {
-      "src": "/img/menu2.png",
-      "alt": "",
-      "width": "30",
-      "height": "28"
-    }
-  })]), _vm._v(" "), _c('dt', [_vm._v("酒店")])])]), _vm._v(" "), _c('a', {
-    staticClass: "box"
-  }, [_c('dl', [_c('dd', [_c('img', {
-    attrs: {
-      "src": "/img/menu3.png",
-      "alt": "",
-      "width": "30",
-      "height": "28"
-    }
-  })]), _vm._v(" "), _c('dt', [_vm._v("娱乐")])])]), _vm._v(" "), _c('a', {
-    staticClass: "box"
-  }, [_c('dl', [_c('dd', [_c('img', {
-    attrs: {
-      "src": "/img/menu4.png",
-      "alt": "",
-      "width": "30",
-      "height": "28"
-    }
-  })]), _vm._v(" "), _c('dt', [_vm._v("购物")])])]), _vm._v(" "), _c('a', {
-    staticClass: "box"
-  }, [_c('dl', [_c('dd', [_c('img', {
-    attrs: {
-      "src": "/img/menu5.png",
-      "alt": "",
-      "width": "30",
-      "height": "28"
-    }
-  })]), _vm._v(" "), _c('dt', [_vm._v("结婚/摄影")])])]), _vm._v(" "), _c('a', {
-    staticClass: "box"
-  }, [_c('dl', [_c('dd', [_c('img', {
-    attrs: {
-      "src": "/img/menu6.png",
-      "alt": "",
-      "width": "30",
-      "height": "28"
-    }
-  })]), _vm._v(" "), _c('dt', [_vm._v("景点")])])]), _vm._v(" "), _c('a', {
-    staticClass: "box"
-  }, [_c('dl', [_c('dd', [_c('img', {
-    attrs: {
-      "src": "/img/menu7.png",
-      "alt": "",
-      "width": "30",
-      "height": "28"
-    }
-  })]), _vm._v(" "), _c('dt', [_vm._v("运动健身")])])]), _vm._v(" "), _c('a', {
-    staticClass: "box"
-  }, [_c('dl', [_c('dd', [_c('img', {
-    attrs: {
-      "src": "/img/menu8.png",
-      "alt": "",
-      "width": "30",
-      "height": "28"
-    }
-  })]), _vm._v(" "), _c('dt', [_vm._v("生活服务")])])])])
-}]}
+  }, _vm._l((_vm.tags), function(tag) {
+    return _c('a', {
+      staticClass: "box",
+      on: {
+        "click": function($event) {
+          _vm.change(tag.id)
+        }
+      }
+    }, [_c('dl', [_c('dd', [_c('img', {
+      attrs: {
+        "src": tag.icon,
+        "alt": tag.tag,
+        "width": "30",
+        "height": "28"
+      }
+    })]), _vm._v(" "), _c('dt', [_vm._v(_vm._s(tag.tag))])])])
+  }))
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -43203,10 +43103,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            tag_id: '',
             end: false,
             pages: 1,
             search: '',
-            list: []
+            list: [],
+            lng: '',
+            lat: ''
         };
     },
     created: function created() {
@@ -43216,45 +43119,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         var self = this;
+        // 百度地图API功能
+        var geolocation = new BMap.Geolocation();
+        geolocation.getCurrentPosition(function (r) {
+            if (this.getStatus() === BMAP_STATUS_SUCCESS) {
+                self.lng = r.point.lng; //经度
+                self.lat = r.point.lat; //纬度
+                self.getList();
+            } else {
+                alert('定位失败，请刷新页面重试！');
+            }
+        }, { enableHighAccuracy: true });
         __WEBPACK_IMPORTED_MODULE_0__eventBus__["a" /* default */].$on('search', function (msg) {
             self.list = [];
-            self.search = msg;
+            self.search = msg.search ? msg.search : '';
+            self.tag_id = msg.tag_id ? msg.tag_id : '';
             self.pages = 1;
             self.end = false;
             _this.getList();
         });
-        this.getList();
     },
 
     computed: {},
     methods: {
+        shopUrl: function shopUrl(id) {
+            return 'shop/' + id + '?lng=' + this.lng + '&lat=' + this.lat;
+        },
         getList: function getList() {
             var self = this;
-            // 百度地图API功能
-            var geolocation = new BMap.Geolocation();
-            geolocation.getCurrentPosition(function (r) {
-                if (this.getStatus() === BMAP_STATUS_SUCCESS) {
-                    var lng = r.point.lng; //经度
-                    var lat = r.point.lat; //纬度
-                    axios.get(api.shop.list, {
-                        params: {
-                            search: self.search,
-                            page: self.pages,
-                            lng: lng,
-                            lat: lat
-                        }
-                    }).then(function (r) {
-                        if (self.pages === r.data.last_page + 1) {
-                            self.end = true;
-                        } else {
-                            self.pages = self.pages + 1;
-                            self.list.push.apply(self.list, r.data.data);
-                        }
-                    });
-                } else {
-                    alert('定位失败，请刷新页面重试！');
+            axios.get(api.shop.list, {
+                params: {
+                    tag_id: self.tag_id,
+                    search: self.search,
+                    page: self.pages,
+                    lng: self.lng,
+                    lat: self.lat
                 }
-            }, { enableHighAccuracy: true });
+            }).then(function (r) {
+                if (self.pages === r.data.last_page + 1) {
+                    self.end = true;
+                } else {
+                    self.pages = self.pages + 1;
+                    self.list.push.apply(self.list, r.data.data);
+                }
+            });
         },
         onscroll: function onscroll() {
             var self = this;
@@ -43299,7 +43207,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('div', {
       staticClass: "item"
     }, [_c('a', {
-      staticClass: "media"
+      staticClass: "media",
+      attrs: {
+        "href": _vm.shopUrl(item.id)
+      }
     }, [_c('div', {
       staticClass: "media-left"
     }, [_c('img', {

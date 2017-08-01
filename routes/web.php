@@ -18,9 +18,11 @@ Route::group(['middleware' => 'wechat.oauth'], function () {
 });
 Route::group(['prefix' => 'shop'], function () {
     Route::get('list', 'IndexController@shopList');
-    Route::get('details', 'IndexController@shopDetails');
+    Route::get('{id}', 'IndexController@shopDetails');
 });
-
+Route::group(['prefix' => 'tags'], function () {
+    Route::get('/', 'IndexController@tagsList');
+});
 
 Route::post('/tools/sendmsg', 'HomeController@sendMessage');
 

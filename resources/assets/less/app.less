@@ -242,3 +242,161 @@ input, button, textarea {
     color: #000;
   }
 }
+
+//详情
+.white-box {
+  background-color: #fff;
+  margin: 10px 0;
+  padding: 10px;
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.shop-top {
+  .title {
+    font-size: 16px;
+    margin-bottom: 2px;
+  }
+  .tag {
+    font-size: 13px;
+    color: #ff5400;
+    margin-bottom: 10px;
+  }
+  .content {
+    font-size: 12px;
+  }
+}
+
+.shop-address {
+  .left {
+    max-width: ~'calc(100% - 30px)';
+    float: left;
+    .icon {
+      color: #999999;
+    }
+  }
+  .call {
+    float: right;
+    margin-top: 10px;
+    a {
+      font-size: 24px;
+      color: #2ad0bf;
+    }
+  }
+  &::after {
+    content: " ";
+    display: table;
+    clear: both;
+  }
+}
+
+.shop-cards {
+  margin: 15px 0;
+  height: 110px;
+  background-color: #fff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  .bg {
+    color: #fff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 80px;
+    .icon {
+      float: left;
+      margin: 10px 0 0 10px;
+    }
+    .content {
+      width: ~'calc(100% - 80px)';
+      float: left;
+      margin-left: 10px;
+      h4 {
+        font-size: 14px;
+      }
+      h3 {
+        margin: 0;
+      }
+      .left {
+        float: left;
+      }
+      .right {
+        padding-top: 10px;
+        text-align: right;
+        padding-right: 15px;
+        float: right;
+        .money {
+          font-size: 19px;
+          font-weight: bold;
+        }
+        .type {
+          font-size: 12px;
+        }
+      }
+      .look {
+        float: left;
+      }
+      .buy {
+        float: right;
+      }
+    }
+    &::after {
+      content: " ";
+      display: table;
+      clear: both;
+    }
+  }
+  .look {
+    color: #000;
+    padding-left: 10px;
+    float: left;
+  }
+  .buy {
+    color: red;
+    padding-right: 10px;
+    float: right;
+  }
+  &::after {
+    content: " ";
+    display: table;
+    clear: both;
+  }
+
+}
+
+.shop-cards.type1 .bg {
+  background: -webkit-linear-gradient(#EC4D4D, #D90505); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(#EC4D4D, #D90505); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(#EC4D4D, #D90505); /* Firefox 3.6 - 15 */
+  background: linear-gradient(#EC4D4D, #D90505); /* 标准的语法 */
+}
+
+.shop-cards.type2 .bg {
+  background: -webkit-linear-gradient(#BED905, #0FA870); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(#BED905, #0FA870); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(#BED905, #0FA870); /* Firefox 3.6 - 15 */
+  background: linear-gradient(#BED905, #0FA870); /* 标准的语法 */
+}
+
+.shop-cards.type3 .bg {
+  background: -webkit-linear-gradient(#ED4E4D, #D9B806); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(#ED4E4D, #D9B806); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(#ED4E4D, #D9B806); /* Firefox 3.6 - 15 */
+  background: linear-gradient(#ED4E4D, #D9B806); /* 标准的语法 */
+}
+
+.shop-cards.type4 .bg {
+  background: -webkit-linear-gradient(#696D6B, #aa05d9); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(#696D6B, #aa05d9); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(#696D6B, #aa05d9); /* Firefox 3.6 - 15 */
+  background: linear-gradient(#696D6B, #aa05d9); /* 标准的语法 */
+}
+
+.shop-link {
+  margin-bottom: 1px;
+  h4 {
+    font-size: 14px;
+    span {
+      font-size: 12px;
+    }
+  }
+}
