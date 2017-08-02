@@ -28,103 +28,46 @@
                 <p>本店会员卡（{{$shop->cards?$shop->cards->count():0}}）</p>
             </div>
             <div class="col-sm-12">
-                <div class="shop-cards type1">
-                    <div class="bg">
-                        <img src="/img/card1.png" alt="" width="60" height="60" class="icon">
-                        <div class="content">
-                            <div class="left">
-                                <h4>{{$shop->name}}</h4>
-                                <h3>8.5折</h3>
+                @foreach($shop->cards as $card)
+                    @if($card->type=='打折卡')
+                        <div class="shop-cards type1">
+                    @elseif($card->type=='充值打折卡')
+                        <div class="shop-cards type2">
+                    @elseif($card->type=='充送卡')
+                        <div class="shop-cards type3">
+                    @elseif($card->type=='次数卡')
+                        <div class="shop-cards type4">
+                    @endif
+                            <div class="bg">
+                                <img src="{{$card->img}}" alt="{{$card->name}}" width="60" height="60" class="icon">
+                                <div class="content">
+                                    <div class="left">
+                                        <h4>{{$shop->name}}</h4>
+                                        @if($card->type=='打折卡')
+                                            <h3>{{$card->discount}}折</h3>
+                                        @elseif($card->type=='充值打折卡')
+                                            <h3>{{$card->discount}}折<small>加送{{$card->send_price}}元</small></h3>
+                                        @elseif($card->type=='充送卡')
+                                            <h3>充{{$card->buy_price}}送{{$card->send_price}}元</h3>
+                                        @elseif($card->type=='次数卡')
+                                            <h3>免费{{$card->frequency}}次</h3>
+                                        @endif
+                                    </div>
+                                    <div class="right">
+                                        <div class="money">￥{{$card->buy_price}}</div>
+                                        <div class="type">{{$card->type}}</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="right">
-                                <div class="money">￥200.00</div>
-                                <div class="type">打折卡</div>
-                            </div>
+                            <a href="/card/{{$card->id}}" class="look">查看权限</a>
+                            <a href="javascript:void(0)" class="buy">立即购买</a>
                         </div>
-                    </div>
-                    <a href="" class="look">查看权限</a>
-                    <a href="" class="buy">立即购买</a>
-                </div>
-                <div class="shop-cards type2">
-                    <div class="bg">
-                        <img src="/img/card2.png" alt="" width="60" height="60" class="icon">
-                        <div class="content">
-                            <div class="left">
-                                <h4>{{$shop->name}}</h4>
-                                <h3>8.5折</h3>
-                            </div>
-                            <div class="right">
-                                <div class="money">￥200.00</div>
-                                <div class="type">打折卡</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="" class="look">查看权限</a>
-                    <a href="" class="buy">立即购买</a>
-                </div>
-                <div class="shop-cards type3">
-                    <div class="bg">
-                        <img src="/img/card3.png" alt="" width="60" height="60" class="icon">
-                        <div class="content">
-                            <div class="left">
-                                <h4>{{$shop->name}}</h4>
-                                <h3>8.5折</h3>
-                            </div>
-                            <div class="right">
-                                <div class="money">￥200.00</div>
-                                <div class="type">打折卡</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="" class="look">查看权限</a>
-                    <a href="" class="buy">立即购买</a>
-                </div>
-                <div class="shop-cards type4">
-                    <div class="bg">
-                        <img src="/img/card4.png" alt="" width="60" height="60" class="icon">
-                        <div class="content">
-                            <div class="left">
-                                <h4>{{$shop->name}}</h4>
-                                <h3>8.5折</h3>
-                            </div>
-                            <div class="right">
-                                <div class="money">￥200.00</div>
-                                <div class="type">打折卡</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="" class="look">查看权限</a>
-                    <a href="" class="buy">立即购买</a>
-                </div>
+                @endforeach
             </div>
             <div class="white-box shop-link">
                 <h4>关联店铺（4）<span>会员卡也可以在以下店铺消费哦</span></h4>
             </div>
-            <div class="list">
-                <div class="item">
-                    <a class="media">
-                        <div class="media-left">
-                            <img class="media-object" src="{{$shop->img}}" alt="" width="112" height="70">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">
-                                <span class="title"></span>
-                                <span>KM</span>
-                            </h4>
-                            <p class="tags">
-                                tags
-                            </p>
-                            <p class="msg">已有会员卡6种<span>222人成为本店会员</span></p>
-                        </div>
-                    </a>
-                    <div class="cards">
-                        <span class="price">￥22</span>
-                        <span class="title">打折卡</span>
-                        <span class="more"><a href="###">更多>></a></span>
-                    </div>
-                </div>
-                <p class="text-center" v-if="end">已经到底啦！</p>
-            </div>
+            <index-list link_shops="{{$shop->id}}"></index-list>
         </div>
     </div>
 @endsection

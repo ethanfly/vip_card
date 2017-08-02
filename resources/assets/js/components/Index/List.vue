@@ -16,9 +16,14 @@
                 </div>
             </a>
             <div class="cards">
-                <span class="price">￥{{item.cards.price}}</span>
-                <span class="title">{{item.cards.title}}</span>
-                <span class="more"><a href="###">更多>></a></span>
+                <template v-if="item.cards.price && item.cards.title">
+                    <span class="price">￥{{item.cards.price}}</span>
+                    <span class="title">{{item.cards.title}}</span>
+                    <span class="more"><a href="###">更多>></a></span>
+                </template>
+                <template v-else>
+                    <p class="text-center">没有添加会员卡！</p>
+                </template>
             </div>
         </div>
         <p class="text-center" v-if="end">已经到底啦！</p>
@@ -28,6 +33,7 @@
 <script>
     import bus from './../../eventBus';
     export default {
+        props: ['link_shops'],
         data(){
             return {
                 tag_id: '',
@@ -68,12 +74,13 @@
         computed: {},
         methods: {
             shopUrl(id){
-                return 'shop/' + id + '?lng=' + this.lng + '&lat=' + this.lat;
+                return '/shop/' + id + '?lng=' + this.lng + '&lat=' + this.lat;
             },
             getList(){
                 let self = this;
                 axios.get(api.shop.list, {
                     params: {
+                        link_shops: self.link_shops,
                         tag_id: self.tag_id,
                         search: self.search,
                         page: self.pages,

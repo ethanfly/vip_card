@@ -12,7 +12,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=GrC90v4MnVnmiGCivKCkhHSRl6rQMHQN"></script>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=GrC90v4MnVnmiGCivKCkhHSRl6rQMHQN"></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     <script>
         window.user = {
             'id': '{{getUser()->id}}',
@@ -22,7 +24,20 @@
             'sex': '{{getUser()->sex}}',
             'subscribe': '{{getUser()->subscribe}}',
         };
+        {{--wx.config({{ app('wechat')->js->config(array(--}}
+            {{--'onMenuShareQQ',--}}
+            {{--'onMenuShareWeibo',--}}
+            {{--'onMenuShareTimeline',--}}
+            {{--'onMenuShareAppMessage',--}}
+            {{--'getLocation',--}}
+            {{--'openLocation',--}}
+            {{--'chooseImage',--}}
+            {{--'previewImage',--}}
+            {{--'uploadImage',--}}
+            {{--'chooseWXPay'--}}
+        {{--), true) }});--}}
     </script>
+    @yield('style')
 </head>
 <body>
 <div id="app">

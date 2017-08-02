@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Card;
 use App\Shop;
 use App\Tag;
 use Illuminate\Http\Request;
@@ -19,6 +20,8 @@ class IndexController extends Controller
                     $query->where('tags.id', $request->tag_id);
                 })
                 ->get();
+        } else if ($request->has('link_shops') && $request->link_shops) {
+            $shops = Shop::find($request->link_shops)->links();
         } else {
             $shops = Shop::where('name', 'like', "%$search%")
                 ->get();
@@ -34,11 +37,11 @@ class IndexController extends Controller
                 'img' => $item->img,
                 'distance' => $item->distance,
                 'tags' => $item->tags->map->tag,
-                'cards_count' => '6',//会员卡数量
+                'cards_count' => $item->cards()->count(),//会员卡数量
                 'users_count' => '3245',//会员数量
                 'cards' => [
-                    'price' => '156',
-                    'title' => '9.8折打折卡',
+                    'price' => $item->cards->last() ? $item->cards->last()->buy_price : '',
+                    'title' => $item->cards->last() ? $item->cards->last()->name : '',
                 ],//最热门的会员卡
             ];
         });
@@ -59,5 +62,23 @@ class IndexController extends Controller
     {
         $tags = Tag::all();
         return response()->json($tags);
+    }
+
+    public function cardDetails($id)
+    {
+        $card = Card::find($id);
+        return view('card', ['card' => $card]);
+    }
+
+    public function cardShow(Request $request)
+    {
+        $card = Card::find($request->card_id);
+        $card->put('shop', $card->shop);
+        return response()->json($card);
+    }
+
+    public function borrowShow()
+    {
+        return view('borrow');
     }
 }

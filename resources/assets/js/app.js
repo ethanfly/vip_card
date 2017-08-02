@@ -11,13 +11,19 @@ window.Vue = require('vue');
 
 window.api = {
     index: '/',
-    user: 'user/',
+    user: '/user/',
     tools: {
-        sendCode: 'tools/sendmsg',
+        sendCode: '/tools/sendmsg',
     },
     shop: {
-        list: 'shop/list',
-        show: 'shop/details',
+        list: '/shop/list',
+        show: '/shop/details',
+    },
+    card: {
+        show: '/card/show'
+    },
+    borrow: {
+        show: '/borrow'
     }
 };
 
@@ -29,6 +35,7 @@ window.api = {
  */
 
 Vue.component('setphone', require('./components/SetPhone.vue'));
+Vue.component('footer-menu', require('./components/FooterBuy.vue'));
 //index
 Vue.component('index-search', require('./components/Index/Search.vue'));
 Vue.component('index-banner', require('./components/Index/Banner.vue'));

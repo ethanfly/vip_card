@@ -15,6 +15,7 @@ class CreateShopsTable extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('parent_id')->unsigned()->default(0);
             $table->string('name', 20);
             $table->string('owner', 20);
             $table->string('phone', 20);
